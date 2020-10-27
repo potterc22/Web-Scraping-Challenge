@@ -7,4 +7,5 @@ def init_browser():
 
 def scrape():
     browser = init_browser()
+    mars_info = {}
     # Visit first url
