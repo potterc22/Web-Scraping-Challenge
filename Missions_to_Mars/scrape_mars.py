@@ -66,16 +66,23 @@ def scrape():
         target = base_url + relative_url
         browser.visit(str(target))
         time.sleep(4)
+        # re-declare our dependent variables
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         # save the image url to a variable
         downloads = soup.find_all('li')
         img_url = downloads[1].a['href']
-        
+        # create dictionary to hold hemisphere image details
         hem_dict = {
             "title": title,
             "img_url": img_url
         }
+        # append dictionary to list
         hemisphere_image_urls.append(hem_dict)
+    # add the list of dictionaries to the mars_info dictionary
     mars_info['hemisphere_img'] = hemisphere_image_urls
+
+    # close browser after scraping
+    browser.quit()
+    # return results
     return mars_info
