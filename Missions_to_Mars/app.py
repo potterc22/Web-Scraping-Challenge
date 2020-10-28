@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 
 # import pymongo library, and connect flask app to database
 from flask_pymongo import PyMongo
@@ -22,6 +22,12 @@ def index():
 @app.route("/scrape")
 def scraper():
     mars_info = mongo.db.mars_info
+    # scrape through mars 
+    data = scrape_mars.scrape()
+    # Update the mongo database
+    mars_info.update({}, data, upsert=True)
+    # redirect the user to the homepage after scraping
+    return redirect("/", code=302)
 
 
 if __name__ == "__main__":
