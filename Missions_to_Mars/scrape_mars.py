@@ -13,7 +13,7 @@ def scrape():
     # NASA Mars News
     # Visit first url
     url1 = "https://mars.nasa.gov/news/"
-    browser.visit(url)
+    browser.visit(url1)
     # Declare dependent variables
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
