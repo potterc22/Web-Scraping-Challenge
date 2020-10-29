@@ -14,10 +14,10 @@ def scrape():
     # Visit first url
     url1 = "https://mars.nasa.gov/news/"
     browser.visit(url1)
+    time.sleep(2)
     # Declare dependent variables
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    time.sleep(2)
     # scrape for the latest news title and paragraph text
     mars_info['news_title'] = soup.find('ul', class_='item_list').\
     find('div', class_='content_title').a.text
@@ -42,7 +42,15 @@ def scrape():
     # use pandas to scrape the Mars Facts webpage for the table containing facts about Mars
     url3 = 'https://space-facts.com/mars/'
     table = pd.read_html(url3)
-    mars_info['html_table'] = table[0].to_html()
+    # save the first table into a variable
+    mars_facts_df = table[0]
+    # rename column headings
+    mars_facts_df.columns = ['', 'Mars']
+    # set the index of the dataframe
+    mars_facts_df.set_index('', inplace=True)
+    # convert df to html and save to resources folder
+    mars_facts = mars_facts_df.to_html(header=True, index=True)
+    mars_info['mars_facts'] = mars_facts
 
     # Mars Hemispheres
     # visit fourth url
@@ -70,8 +78,9 @@ def scrape():
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         # save the image url to a variable
-        downloads = soup.find_all('li')
-        img_url = downloads[1].a['href']
+        downloads = soup.find('div', class_='downloads')
+        relative_url = downloads.img['src']
+        img_url = base_url + relative_url
         # create dictionary to hold hemisphere image details
         hem_dict = {
             "title": title,
