@@ -10,19 +10,23 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-      <div class="jumbotron text-center">
-          <h1>Mission to Mars</h1>
-          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">
-            Scrape New Data</a></p>
-      </div>
+  <div class="container">
+    <div class="jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">
+          Scrape New Data</a></p>
+    </div>
     <div class="row">
         <div class="col-12">
-            <h2>Latest Mars News</h2>
-            <h3>{{ mars_info.news_title }}</h3>
-            <p>{{ mars_info.news_p }}</p>
+          <h2>Latest Mars News</h2>
+          <h3>{{ mars_info.news_title }}</h3>
+          <p>{{ mars_info.news_p }}</p>
         </div>
-        
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+          <h2>Featured Mars Image</h2>
+        </div>
     </div>
   </div>
 
