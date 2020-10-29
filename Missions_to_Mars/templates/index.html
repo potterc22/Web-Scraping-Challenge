@@ -44,10 +44,12 @@
       </div>
       {% for hemisphere in mars_info.hemisphere_img %}
       <div class="col-md-6">
-        <div class="thumbnail">
-          <img src="{{ hemisphere.img_url }}">
-          <div class="caption">
-            <h3><b>{{ hemisphere.title }}</b></h3>
+        <div class="card">
+          <div class="thumbnail">
+            <img class="card-img-top" src="{{ hemisphere.img_url }}" alt="Card image cap">
+            <div class="card-body">
+              <h3 class="card-text"><b>{{ hemisphere.title }}</b></h3>
+            </div>
           </div>
         </div>
       </div>
@@ -57,3 +59,7 @@
 
 </body>
 </html>
+
+
+  
+</div>

@@ -78,8 +78,8 @@ def scrape():
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         # save the image url to a variable
-        downloads = soup.find('div', class_='downloads')
-        relative_url = downloads.img['src']
+        downloads = soup.find('img', class_='wide-image')
+        relative_url = downloads['src']
         img_url = base_url + relative_url
         # create dictionary to hold hemisphere image details
         hem_dict = {
