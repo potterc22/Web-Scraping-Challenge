@@ -12,7 +12,7 @@
 <body>
   <div class="container">
     <div class="jumbotron text-center text-danger" style="background-image: url(https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-size: 100%;">
-      <h1>Mission to Mars</h1>
+      <h1 style="color:white">Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">
         Scrape New Data</a></p>
     </div>
@@ -31,9 +31,7 @@
         <div class="col-md-4">
           <h2>Facts About Mars</h2>
           <!-- https://stackoverflow.com/questions/48975383/why-to-use-safe-in-jinja2-python -->
-          <div class="table table-striped">
-            {{mars_info.mars_facts | safe}}
-          </div>
+          {{mars_info.mars_facts | safe}}
         </div>
     </div>
     <br>

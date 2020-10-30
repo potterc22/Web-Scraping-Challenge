@@ -49,7 +49,7 @@ def scrape():
     # set the index of the dataframe
     mars_facts_df.set_index('', inplace=True)
     # convert df to html and save to resources folder
-    mars_facts = mars_facts_df.to_html(header=True, index=True)
+    mars_facts = mars_facts_df.to_html(classes="table table-striped", header=True, index=True)
     mars_info['mars_facts'] = mars_facts
 
     # Mars Hemispheres
