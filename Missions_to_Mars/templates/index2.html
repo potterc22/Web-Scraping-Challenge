@@ -6,14 +6,14 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -26,9 +26,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">News</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Feature Image</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Facts</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#news">News</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#featured_img">Feature Image</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#facts">Facts</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hemispheres">Hemispheres</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -39,72 +41,83 @@
                 <div class="mx-auto text-center">
                     <h1 class="mx-auto my-0 text-uppercase">Mission to Mars</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Click below to gather data about the Mission to Mars from various websites.</h2>
-                    <a class="btn btn-primary js-scroll-trigger" href="#about">Scrape Data</a>
+                    <a class="btn btn-primary" href="/scrape" role="button">Scrape Data</a>
                 </div>
             </div>
         </header>
         <!-- About-->
-        <section class="about-section text-center" id="about">
+        <section class="about-section text-center" id="news">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/template-overviews/grayscale/">the preview page</a>
-                            . The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
+                        <h2 class="text-white mb-4">Latest Mars News</h2>
+                        <h3 class="text-white mb-4">{{ mars_info.news_title }}</h3>
+                        <p class="text-white mb-4">{{ mars_info.news_p }}</p>
                     </div>
                 </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="" />
+                <br>
+                <br>
+                <br>
+                <!-- <img class="img-fluid" src="assets/img/wp2461878.jpg" alt="" /> -->
+                <br>
             </div>
         </section>
         <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
+        <section class="projects-section bg-light">
             <div class="container">
                 <!-- Featured Project Row-->
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/pexels-philippe-donn-1169754.jpg" alt="" /></div>
+                    <div class="col-xl-8 col-lg-7" id="featured_img"><img class="img-fluid mb-3 mb-lg-0" src="{{ mars_info.featured_image_url }}" alt="featured_img" /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Shoreline</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            <h3>Featured Mars Image</h3>
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
                 <!-- Project One Row-->
-                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="" /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Misty</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
-                                    <hr class="d-none d-lg-block mb-0 ml-0" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row justify-content-center no-gutters">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="" /></div>
+                <div class="row justify-content-center gutters" id="facts">
+                    <div class="col-lg-6">{{mars_info.mars_facts | safe}}</div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Mountains</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                                    <h4 class="text-white">Quick Facts</h4>
+                                    <p class="mb-0 text-white-50">Check out these cool facts about Mars!</p>
                                     <hr class="d-none d-lg-block mb-0 mr-0" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br>
+                <h1 id='hemispheres'>Hemisphere's of Mars</h1>
+                <hr>
+                <!-- Project Two Row -->
+                {% for hemisphere in mars_info.hemisphere_img %}
+                <div class="row justify-content-center gutters mb-5 mb-lg-0">
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ hemisphere.img_url }}" alt="" /></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h3 class="text-white">{{ hemisphere.title }}</h3>
+                                    <hr class="d-none d-lg-block mb-0 ml-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+                
+                 
             </div>
+        
         </section>
-        <!-- Signup-->
         <section class="signup-section" id="signup">
             <div class="container">
                 <div class="row">
@@ -169,6 +182,6 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="scripts.js"></script>
     </body>
 </html>

@@ -15,7 +15,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mission_to_mars_app")
 def index():
     # find the first thing it finds in the database
     mars_info = mongo.db.mars_info.find_one()
-    return render_template("index.html", mars_info = mars_info)
+    return render_template("index2.html", mars_info = mars_info)
 
 # Next, create a route called /scrape that will import your scrape_mars.py script and call your scrape function.
 # Store the return value in Mongo as a Python dictionary.
